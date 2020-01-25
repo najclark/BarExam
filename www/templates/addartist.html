@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Add Artist{% endblock %}
+
+{% block body %}
+<form action="/addartist" method="post">
+    Artist Name: <input type="text" name="artist_name"/><br>
+    Artist Image: <input type="text" name="artist_image" value="N/A"/><br>
+    <input type="submit" value="submit"/><br>
+</form>
+<button type="button" onclick="window.location.href='index'">Home</button>
+{% endblock %}

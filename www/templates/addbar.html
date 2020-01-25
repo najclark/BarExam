@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Add Bar{% endblock %}
+
+{% block body %}
+<form id="addbar-form" action="/addbar" method="post">
+    <h1 id="quote">"</h1>
+    <textarea rows="4" cols="40" name="line" id="line-input"></textarea>
+    <h1 id="quote">"</h1><br>
+
+    <!-- Song: <input list="select-songs" type="text" name="song">
+    <datalist id="select-songs">
+        {% for song in songs %}
+        <option value="{{song.Name}}"> {{song.Name}} </option>
+        {% endfor %}
+    </datalist><br> -->
+
+    Song:
+    <select id="select-songs" name="song">
+        <option></option>
+        {% for song in songs %}
+        <option value="{{song.Name}}"> {{song.Name}} </option>
+        {% endfor %}
+    </select><br><br>
+
+    Correct Artist:
+    <select id="select-artists" name="correct_artist">
+        <option></option>
+        {% for artist in artists %}
+        <option value="{{artist.Name}}"> {{artist.Name}} </option>
+        {% endfor %}
+    </select><br>
+
+    <input type="submit" value="submit"/><br>
+</form>
+<button type="button" onclick="window.location.href='index'">Home</button>
+
+
+<script>
+$('#select-songs').select2({
+    allowClear: true,
+    placeholder: "Search",
+    language: {
+        noResults: function () {
+            return $("<a href='/addsong'>Add Missing Song</a>");
+        }
+    }
+});
+
+$('#select-artists').select2({
+    allowClear: true,
+    placeholder: "Search",
+    language: {
+        noResults: function () {
+            return $("<a href='/addartist'>Add Missing Artist</a>");
+        }
+    }
+});
+</script>
+{% endblock %}

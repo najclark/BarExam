@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Bar Exam{% endblock %}
+
+{% block body %}
+<div class="split left">
+    <form class="option" action="/play" method="post">
+        <input type="number" name="BarID" value="{{bar.BarID}}" hidden=true/>
+        <input type="number" name="pick" value="{{options[0].ArtistID}}" hidden=true/>
+        <input type="submit" value="{{options[0].Name}}"/>
+    </form>
+    <form class="option" action="/play" method="post">
+        <input type="number" name="BarID" value="{{bar.BarID}}" hidden=true/>
+        <input type="number" name="pick" value="{{options[1].ArtistID}}" hidden=true/>
+        <input type="submit" value="{{options[1].Name}}"/>
+    </form>
+</div>
+
+<div class="split right">
+    <form class="option" action="/play" method="post">
+        <input type="number" name="BarID" value="{{bar.BarID}}" hidden=true/>
+        <input type="number" name="pick" value="{{options[2].ArtistID}}" hidden=true/>
+        <input type="submit" value="{{options[2].Name}}"/>
+    </form>
+    <form class="option" action="/play" method="post">
+        <input type="number" name="BarID" value="{{bar.BarID}}" hidden=true/>
+        <input type="number" name="pick" value="{{options[3].ArtistID}}" hidden=true/>
+        <input type="submit" value="{{options[3].Name}}"/>
+    </form>
+</div>
+
+<h1 id="bar">"{{bar.Line}}"</h1>
+{% endblock %}
