@@ -27,16 +27,16 @@ def getbars():
     return jsonify(batch)
 
 
-@app.route('/verifyanswer', methods=['POST'])
+@app.route('/verifyanswer')
 def verifyanswer():
     request_data = request.args
 
     bar = Bar.query.get(request_data.get('BarID'))
     pick = request_data.get('pick')
     if(str(pick) == str(bar.CorrectArtist)):
-        return 'Correct'
+        return jsonify({'response': 'Correct'})
 
-    return 'Incorrect'
+    return jsonify({'response': 'Incorrect'})
 
 
 @app.route('/addbar', methods=['POST'])
@@ -75,4 +75,4 @@ def addbar():
     db.session.add(Bar(Line=line, CorrectArtist=correct_artist.ArtistID,
                        IncorrectArtist1=artists[0].ArtistID, IncorrectArtist2=artists[1].ArtistID, IncorrectArtist3=artists[2].ArtistID, song=s))
     db.session.commit()
-    return 'Success', 201
+    jsonify({'response': 'Success'})

@@ -14,6 +14,6 @@ class Genius:
         
         return requests.get(search_url, params=params, headers=headers).json()
 
-genius = Genius()
-img_url = genius.search("Bhad Bhabie")['response']['hits'][0]['result']['primary_artist']['image_url']
-print(img_url)
+# genius = Genius()
+# img_url = genius.search("Bhad Bhabie")['response']['hits'][0]['result']['primary_artist']['image_url']
+# print(img_url)
