@@ -2,6 +2,7 @@
 
 ### Feature List
 ##### Incomplete
+* Limit number of api calls to /searchsong (AddBar.js)
 * Convert App.js activeComponent/intent into a global context
 * Add Home/Back button to AddBar.js page (use activeComponent context) 
 * Display prieviously saved bars in LyricView.js
