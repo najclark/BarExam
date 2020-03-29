@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import SongSelector from './SongSelector';
 import LyricView from './LyricView';
+import { DebounceInput } from 'react-debounce-input';
 
 export default function AddBar() {
 
@@ -23,7 +24,7 @@ export default function AddBar() {
             <form>
                 <label>
                     Song:
-                <input type="text" value={song} onChange={searchSong} />
+                <DebounceInput debounceTimeout={300} value={song} onChange={searchSong} />
                 </label>
             </form>
 
