@@ -5,27 +5,47 @@ export default function LyricView(props) {
 
     const [lyrics, setLyrics] = useState("");
 
-    // const [range, highlightRange] = useState([]);
+    const [highlighted, setHighlighted] = useState("");
+
+    //needed to capture 'Add Bar' onClick
+    const ref = React.createRef();
 
     useEffect(() => {
 
-        fetch(`/getlyrics?song_id=${props.song}`).then(res => res.json()).then(data => {
-            setLyrics(data);
-        });
+        if (lyrics === "") {
+            fetch(`/getlyrics?song_id=${props.details.song_id}`).then(res => res.json()).then(data => {
+                setLyrics(data);
+            });
+        }
 
     })
 
+    function addBar(event) {
+        fetch(
+            `/addbar?line=${highlighted}&correct_artist=${props.details.artist}&song=${props.details.title}`,
+            { method: 'POST' }
+        ).then(res => res.json()).then(data => {
+            console.log(data);
+        });
+    }
+
+    function highlight() {
+        setHighlighted(window.getSelection().toString().trim());
+    }
 
     return (
         <div>
-            {lyrics === "" ? 
+            {lyrics === "" ?
                 <h1>Loading</h1>
-                 : 
+                :
                 <div>
-                    <p>{lyrics}</p>
-                    <Popover>Hello there</Popover>
+                    <pre ref={ref}>{lyrics}</pre>
+                    <Popover selectionRef={ref} onTextSelect={highlight}>
+                        <button type="button" onClick={addBar}>Save Bar</button>
+                    </Popover>
                 </div>
             }
         </div>
     )
 }
+

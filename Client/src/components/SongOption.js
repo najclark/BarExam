@@ -3,7 +3,7 @@ import React from 'react'
 export default function SongOption(props) {
 
     const pickThisSong = () => {
-        props.pickSong(props.details.song_id);
+        props.pickSong(props.details);
     }
 
     return (

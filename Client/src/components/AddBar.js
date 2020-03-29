@@ -8,7 +8,7 @@ export default function AddBar() {
 
     const [options, setOptions] = useState([]);
 
-    const [selectedSong, pickSong] = useState("");
+    const [selectedSong, pickSong] = useState(null);
 
     const searchSong = (event) => {
         setSong(event.target.value);
@@ -27,7 +27,7 @@ export default function AddBar() {
                 </label>
             </form>
 
-            {selectedSong === "" ? <SongSelector options={options} pickSong={pickSong}/> : <LyricView song={selectedSong} />}
+            {selectedSong === null ? <SongSelector options={options} pickSong={pickSong}/> : <LyricView details={selectedSong} />}
             
         </div>
     )

@@ -104,4 +104,4 @@ def addbar():
     db.session.add(Bar(Line=line, CorrectArtist=correct_artist.ArtistID,
                        IncorrectArtist1=artists[0].ArtistID, IncorrectArtist2=artists[1].ArtistID, IncorrectArtist3=artists[2].ArtistID, song=s))
     db.session.commit()
-    jsonify({'response': 'Success'})
+    return jsonify({'response': 'Success'})
