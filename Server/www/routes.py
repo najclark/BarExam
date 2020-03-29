@@ -4,6 +4,7 @@ from www.models import *
 from . import apimanager
 from random import shuffle
 
+
 @app.route('/getbars')
 def getbars():
     num = int(request.args.get('batch_size'))
@@ -39,6 +40,34 @@ def verifyanswer():
     return jsonify({'response': 'Incorrect'})
 
 
+@app.route('/searchsong')
+def searchsong():
+    search_term = request.args.get('search_term')
+
+    genius = apimanager.Genius()
+    raw_hits = genius.search(search_term)['response']['hits']
+    hits = []
+    for hit in raw_hits:
+        hit_data = {}
+        if(hit['type'] == 'song'):
+            hit_data['title'] = hit['result']['title']
+            hit_data['full_title'] = hit['result']['full_title']
+            hit_data['song_art_image_url'] = hit['result']['song_art_image_url']
+            hit_data['song_id'] = hit['result']['id']
+            hit_data['artist'] = hit['result']['primary_artist']['name']
+            hits.append(hit_data)
+
+    return jsonify(hits)
+
+@app.route('/getlyrics')
+def getlyrics():
+    song_id = request.args.get("song_id");
+
+    genius = apimanager.Genius()
+
+    return jsonify(genius.lyrics_from_song_id(song_id))
+
+
 @app.route('/addbar', methods=['POST'])
 def addbar():
     # TODO: ADD data verification, ensure everything is there...
@@ -48,7 +77,7 @@ def addbar():
     artist_name = request_data.get('correct_artist')
     title = request_data.get('song')
 
-    #Create artist if not in the database
+    # Create artist if not in the database
     correct_artist = Artist.query.filter_by(Name=artist_name).first()
     if(correct_artist == None):
         genius = apimanager.Genius()
@@ -56,9 +85,9 @@ def addbar():
             'response']['hits'][0]['result']['primary_artist']['image_url']
         correct_artist = Artist(Name=artist_name, Image=img_url)
         db.session.add(correct_artist)
-        db.session.commit() # may not be necessary to commit new artist here
+        db.session.commit()  # may not be necessary to commit new artist here
 
-    #Create song if not in the database
+    # Create song if not in the database
     s = Song.query.filter_by(Name=title).first()
     if(s == None):
         genius = apimanager.Genius()
@@ -66,9 +95,9 @@ def addbar():
             'response']['hits'][0]['result']['song_art_image_url']
         s = Song(Name=title, artist=correct_artist, Image=img_url)
         db.session.add(s)
-        db.session.commit() #may not be necessary to commit new song here
+        db.session.commit()  # may not be necessary to commit new song here
 
-    #Get list of artists other than the correct_artist
+    # Get list of artists other than the correct_artist
     artists = Artist.query.filter(Artist.Name != correct_artist.Name).all()
     shuffle(artists)  # works inplace, returns None
 
