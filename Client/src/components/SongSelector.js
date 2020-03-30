@@ -1,5 +1,6 @@
-import React from 'react'
-import SongOption from './SongOption'
+import React from 'react';
+import SongOption from './SongOption';
+import '../styles/SongSelector.css';
 
 export default function SongSelector(props) {
 
@@ -10,7 +11,7 @@ export default function SongSelector(props) {
     }
 
     return (
-        <div>
+        <div id='SongSelector'>
             {cards}
         </div>
     )

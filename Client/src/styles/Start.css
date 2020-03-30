@@ -1,0 +1,48 @@
+#play {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#play h1 {
+    font-size: 100px;
+    color: white;
+    margin: 0;
+}
+
+#play #start {
+    margin: 10px;
+    font-family: 'Righteous', cursive;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    cursor:pointer;
+    overflow: hidden;
+    border-style: solid;
+    border-width: thick;
+    border-color: white;
+    outline-color: white;
+    color: white;
+    font-size: 24px;
+    padding: 16px;
+    padding-left: 36px;
+    padding-right: 36px;
+}
+
+#addbar-btn {
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    font-family: 'Righteous', cursive;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    cursor:pointer;
+    overflow: hidden;
+    border-style: none;
+    border-color: Transparent;
+    outline-color: Transparent;
+    color: white;
+    font-size: 18px;
+}

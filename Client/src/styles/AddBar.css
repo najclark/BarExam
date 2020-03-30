@@ -1,0 +1,27 @@
+#song_input {
+    margin-top: 3rem;
+    outline: none;
+    width: 90%;
+    border-width: 0 0 2px;
+    border-color: white;
+    background-color: transparent;
+    font-size: 64px;
+    color: white;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: white;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: white;
+}
+
+#AddBar {
+    height: 100%
+}

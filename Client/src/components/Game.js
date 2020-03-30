@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import ArtistButton from './ArtistButton';
-import { useContext } from 'react';
-import { IntentContext, StartIntent } from './IntentContext';
+import ArtistButton from './ArtistButton'
+import { useContext } from 'react'
+import { IntentContext, StartIntent } from './IntentContext'
 
 export default function Game() {
 

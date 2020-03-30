@@ -4,6 +4,7 @@ import LyricView from './LyricView';
 import { DebounceInput } from 'react-debounce-input';
 import { useContext } from 'react';
 import { IntentContext, StartIntent } from './IntentContext';
+import '../styles/AddBar.css';
 
 export default function AddBar() {
 
@@ -22,18 +23,21 @@ export default function AddBar() {
         });
     }
 
-    return (
-        <div>
-            <button id='start' type="button" onClick={() => {intent(StartIntent)}}>Home</button>
-            <form>
-                <label>
-                    Song:
-                <DebounceInput debounceTimeout={300} value={song} onChange={searchSong} />
-                </label>
-            </form>
+    if (selectedSong === null) {
+        return (
+            <div id='AddBar'>
+                <button id='addbar-btn' type="button" onClick={() => { intent(StartIntent) }}>Home</button>
 
-            {selectedSong === null ? <SongSelector options={options} pickSong={pickSong}/> : <LyricView details={selectedSong} />}
-            
-        </div>
-    )
+                <DebounceInput id='song_input' debounceTimeout={300} value={song} onChange={searchSong} placeholder="Search for a song..." />
+
+                <SongSelector options={options} pickSong={pickSong} />
+
+            </div>
+        )
+    } else {
+        return (
+            <LyricView details={selectedSong} />
+        )
+    }
+    
 }

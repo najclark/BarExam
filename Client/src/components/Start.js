@@ -1,5 +1,6 @@
-import React, {useContext} from 'react'
-import { IntentContext, AddBarIntent, GameIntent } from './IntentContext'
+import React, {useContext} from 'react';
+import { IntentContext, AddBarIntent, GameIntent } from './IntentContext';
+import '../styles/Start.css'
 
 export default function Start() {
 

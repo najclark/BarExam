@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import Popover from 'react-text-selection-popover'
+import React, { useEffect, useState } from 'react';
+import Popover from 'react-text-selection-popover';
+import '../styles/LyricView.css';
+import LoadingIndicator from './LoadingIndicator';
 
 export default function LyricView(props) {
 
@@ -58,7 +60,7 @@ export default function LyricView(props) {
         })} </pre>;
     }
 
-    var lyrics_display = (<pre>{lyrics}</pre>);
+    var lyrics_display = (<pre ref={ref}>{lyrics}</pre>);
     if(prevBars.length !== 0) {
         lyrics_display = identifyPrevBars(lyrics, prevBars);
     }
@@ -66,7 +68,7 @@ export default function LyricView(props) {
     return (
         <div>
             {lyrics === "" ?
-                <h1>Loading</h1>
+                <LoadingIndicator />
                 :
                 <div>
                     {lyrics_display}

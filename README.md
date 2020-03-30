@@ -2,16 +2,16 @@
 
 ### Feature List
 ##### Incomplete
-* Style App.js
 * Style Game.js (create grid of ArtistButton.js components)
 * Style ArtistButton.js (artist grayscale image behind artist name)
-* Style SongOption.js (classic material ui card, display image, title, and artist )
-* Style SongSelector.js (create grid of SongOption.js components)
 * Style LyricView.js (maybe go for a genius-like design)
 * Prevent adding a bar longer than current database limit
 * Limit amount of time per each bar (Create a timer in Game.js)
 * Don't allow previously submitted bar to be added
 ##### Complete
+* Style SongOption.js (classic material ui card, display image, title, and artist )
+* Style SongSelector.js (create grid of SongOption.js components)
+* Style Start.js
 * Display prieviously saved bars in LyricView.js
 * Add Home/Back button to AddBar.js page (use activeComponent context) 
 * Convert App.js activeComponent/intent into a global context

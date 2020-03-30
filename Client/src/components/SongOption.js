@@ -1,4 +1,5 @@
 import React from 'react'
+import '../styles/SongOption.css'
 
 export default function SongOption(props) {
 
@@ -7,10 +8,12 @@ export default function SongOption(props) {
     }
 
     return (
-        <div>
-            <h3>{props.details.title}</h3>
-            <p>{props.details.artist}</p>
-            <button type="button" onClick={pickThisSong}>Pick</button>
+        <div id='SongOption' onClick={pickThisSong}>
+            <img src={props.details.song_art_image_url} id='img'/>
+            <div id='details'>
+                <h3>{props.details.title}</h3>
+                <p>{props.details.artist}</p>
+            </div>
         </div>
     )
 }
