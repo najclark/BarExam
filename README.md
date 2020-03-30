@@ -2,7 +2,6 @@
 
 ### Feature List
 ##### Incomplete
-* Display prieviously saved bars in LyricView.js
 * Style App.js
 * Style Game.js (create grid of ArtistButton.js components)
 * Style ArtistButton.js (artist grayscale image behind artist name)
@@ -13,6 +12,7 @@
 * Limit amount of time per each bar (Create a timer in Game.js)
 * Don't allow previously submitted bar to be added
 ##### Complete
+* Display prieviously saved bars in LyricView.js
 * Add Home/Back button to AddBar.js page (use activeComponent context) 
 * Convert App.js activeComponent/intent into a global context
 * Limit number of api calls to /searchsong (AddBar.js)
