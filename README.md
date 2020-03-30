@@ -2,8 +2,6 @@
 
 ### Feature List
 ##### Incomplete
-* Convert App.js activeComponent/intent into a global context
-* Add Home/Back button to AddBar.js page (use activeComponent context) 
 * Display prieviously saved bars in LyricView.js
 * Style App.js
 * Style Game.js (create grid of ArtistButton.js components)
@@ -11,8 +9,12 @@
 * Style SongOption.js (classic material ui card, display image, title, and artist )
 * Style SongSelector.js (create grid of SongOption.js components)
 * Style LyricView.js (maybe go for a genius-like design)
+* Prevent adding a bar longer than current database limit
 * Limit amount of time per each bar (Create a timer in Game.js)
+* Don't allow previously submitted bar to be added
 ##### Complete
+* Add Home/Back button to AddBar.js page (use activeComponent context) 
+* Convert App.js activeComponent/intent into a global context
 * Limit number of api calls to /searchsong (AddBar.js)
 * Conditionally render components from App.js based on activeComponent
 * Fetch batch of bars in Game.js, fetch new batch when current batch empty

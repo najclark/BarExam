@@ -1,27 +1,25 @@
-import React, { Component } from 'react'
+import React, {useContext} from 'react'
+import { IntentContext, AddBarIntent, GameIntent } from './IntentContext'
 
-export class Start extends Component {
+export default function Start() {
 
-    render() {
+    const intent = useContext(IntentContext);
 
-        const renderAddBar = () => {
-            this.props.intent('AddBar')
-        }
-
-        const renderGame = () => {
-            this.props.intent('Game')
-        }
-
-        return (
-            <div>
-                <button id="addbar-btn" type="button" onClick={renderAddBar}>ADD BAR</button>
-                <div id='play'>
-                    <h1>"Bar Exam"</h1>
-                    <button id='start' type="button" onClick={renderGame}>START</button>
-                </div>
-            </div>
-        )
+    const renderAddBar = () => {
+        intent(AddBarIntent)
     }
-}
 
-export default Start
+    const renderGame = () => {
+        intent(GameIntent)
+    }
+
+    return (
+        <div>
+            <button id="addbar-btn" type="button" onClick={renderAddBar}>ADD BAR</button>
+            <div id='play'>
+                <h1>"Bar Exam"</h1>
+                <button id='start' type="button" onClick={renderGame}>START</button>
+            </div>
+        </div>
+    )
+}

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import ArtistButton from './ArtistButton';
+import { useContext } from 'react';
+import { IntentContext, StartIntent } from './IntentContext';
 
-export default function Game(props) {
+export default function Game() {
 
     const batch_size = 20;
-
     const [bar, setBar] = useState([]);
-
     const [selectedArtist, selectArtist] = useState(-1);
+    const intent = useContext(IntentContext);
 
     function removeByIndex(array, index) {
         return array.filter((el, i) => {
@@ -16,12 +17,11 @@ export default function Game(props) {
     }
 
     useEffect(() => {
-
         //Artist has been selected, verify answer
         if (selectedArtist !== -1) {
             fetch(`/verifyanswer?BarID=${bar[0].bar.BarID}&pick=${selectedArtist}`).then(res => res.json()).then(data => {
                 if(data.response === 'Incorrect') {
-                    props.intent('Start');
+                    intent(StartIntent);
                 } else {
                     selectArtist(-1); //Set to default to avoid multiple fetches to verifyanswer
                     setBar(removeByIndex(bar, 0));

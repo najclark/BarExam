@@ -64,8 +64,18 @@ def getlyrics():
     song_id = request.args.get("song_id");
 
     genius = apimanager.Genius()
+    res = genius.lyrics_from_song_id(song_id)
 
-    return jsonify(genius.lyrics_from_song_id(song_id))
+    song_title = res['song_title']
+    s = Song.query.filter_by(Name=song_title).first()
+    bars = []
+    if(s != None):
+        raw_bars = list(Bar.query.filter_by(SongID=s.SongID).all())
+        for bar in raw_bars:
+            bars.append(bar.toJSON())
+
+    lyrics = res['lyrics']
+    return jsonify({'lyrics': lyrics, 'bars': bars})
 
 
 @app.route('/addbar', methods=['POST'])

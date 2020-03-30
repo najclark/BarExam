@@ -3,33 +3,40 @@ import './App.css';
 import Start from './components/Start';
 import Game from './components/Game';
 import AddBar from './components/AddBar';
+import { IntentContext } from './components/IntentContext';
 
 
 function App() {
 
     const [activeComponent, intent] = useState('Start')
 
+    var renderedComponent = null;
+
     if (activeComponent === 'Start') {
-        return (
+        renderedComponent = (
             <div className="App">
-                <Start intent={intent} />
+                <Start />
             </div>
         );
     } else if (activeComponent === 'Game') {
-        return (
+        renderedComponent = (
             <div className="App">
-                <Game intent={intent} />
+                <Game />
             </div>
         );
     } else if (activeComponent === 'AddBar') {
-        return (
+        renderedComponent = (
             <div className="App">
-                <AddBar intent={intent} />
+                <AddBar />
             </div>
         );
     }
     
-    return null;
+    return (
+        <IntentContext.Provider value={intent}>
+            {renderedComponent}
+        </IntentContext.Provider>
+    );
 }
 
 export default App;
