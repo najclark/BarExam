@@ -1,0 +1,52 @@
+#ArtistButton {
+    position: relative;
+    width: 100%;
+    height: 50%;
+}
+
+#centered-left {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    font-family: 'Righteous', cursive;
+    color: white;
+    font-size: 56px;
+    cursor:pointer;
+}
+
+#centered-right {
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    font-family: 'Righteous', cursive;
+    color: white;
+    font-size: 56px;
+    cursor:pointer;
+}
+
+#artist {
+    height: 200px;
+    width: 200px;
+    filter: grayscale(100%);
+    z-index: 2;
+}
+
+#outline {
+    height: 400px;
+    width: 400px;
+    filter: grayscale(100%);
+    z-index: 2;
+}
+
+.vinyl {
+    animation: vinyl 8s infinite;
+    animation-timing-function: linear;
+    border-radius: 50%;
+}
+
+@keyframes vinyl {
+  0%  { transform: rotate(0deg);}
+  100%{ transform: rotate(360deg);}
+}

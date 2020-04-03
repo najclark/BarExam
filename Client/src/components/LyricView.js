@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Popover from 'react-text-selection-popover';
 import '../styles/LyricView.css';
 import LoadingIndicator from './LoadingIndicator';
+import Navbar from './Navbar';
 
 export default function LyricView(props) {
 
@@ -48,29 +49,46 @@ export default function LyricView(props) {
         regex = regex.substring(0, regex.lastIndexOf('|'));
         var parts = text.split(new RegExp(regex, 'gi'));
 
-        return <pre ref={ref}> {parts.map((part, i) =>{ 
-            if (highlights.includes(part)) {
-                return <p key={i} style={{fontWeight: 'bold'}}>{part}</p>
+        return <pre ref={ref}> {parts.map((part, i) => {
+            var prev = false;
+
+            highlights.map((highlight, i) => {
+                if (highlight.Line === part) {
+                    prev = true;
+                }
+                return null;
+            });
+            if (prev) {
+                return <p key={i}><span key={i} id='highlight'>{part}</span></p>
             }
-            return (
-                <p key={i} >
-                    {part}
-                </p>
-            ) 
+
+            if (String(part) !== 'undefined') {
+                return (
+                    <p key={i}><span key={i} id='else'>
+                        {part.trim()}
+                    </span></p>
+                )
+            }
+            return null;
         })} </pre>;
     }
 
     var lyrics_display = (<pre ref={ref}>{lyrics}</pre>);
-    if(prevBars.length !== 0) {
+    if (prevBars.length !== 0) {
         lyrics_display = identifyPrevBars(lyrics, prevBars);
     }
 
     return (
         <div>
+            <Navbar />
             {lyrics === "" ?
                 <LoadingIndicator />
                 :
-                <div>
+                <div id='LyricView'>
+                    <div id='SongInfo'>
+                        <h1 id='title'>{props.details.title}</h1>
+                        <h3 id='artist'>{props.details.artist}</h3>
+                    </div>
                     {lyrics_display}
                     <Popover selectionRef={ref} onTextSelect={highlight}>
                         <button type="button" onClick={addBar}>Save Bar</button>

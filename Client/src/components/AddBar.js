@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import SongSelector from './SongSelector';
 import LyricView from './LyricView';
+import Navbar from './Navbar';
 import { DebounceInput } from 'react-debounce-input';
-import { useContext } from 'react';
-import { IntentContext, StartIntent } from './IntentContext';
 import '../styles/AddBar.css';
 
 export default function AddBar() {
@@ -11,7 +10,6 @@ export default function AddBar() {
     const [song, setSong] = useState("");
     const [options, setOptions] = useState([]);
     const [selectedSong, pickSong] = useState(null);
-    const intent = useContext(IntentContext);
 
     const searchSong = (event) => {
         setSong(event.target.value);
@@ -26,9 +24,9 @@ export default function AddBar() {
     if (selectedSong === null) {
         return (
             <div id='AddBar'>
-                <button id='addbar-btn' type="button" onClick={() => { intent(StartIntent) }}>Home</button>
+                <Navbar />
 
-                <DebounceInput id='song_input' debounceTimeout={300} value={song} onChange={searchSong} placeholder="Search for a song..." />
+                <DebounceInput id='song_input' debounceTimeout={300} value={song} onChange={searchSong} placeholder="Search for a song..." autoComplete='off' />
 
                 <SongSelector options={options} pickSong={pickSong} />
 
