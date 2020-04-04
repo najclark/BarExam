@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Popover from 'react-text-selection-popover';
 import '../styles/LyricView.css';
 import LoadingIndicator from './LoadingIndicator';
 import Navbar from './Navbar';
@@ -9,10 +8,8 @@ export default function LyricView(props) {
     const [lyrics, setLyrics] = useState("");
     const [prevBars, setPrevBars] = useState([]);
 
-    const [highlighted, setHighlighted] = useState("");
-
-    //needed to capture 'Add Bar' onClick
-    const ref = React.createRef();
+    const [position, setPosition] = useState([]);
+    const [highlighted, setHighlighted] = useState('');
 
     useEffect(() => {
 
@@ -26,6 +23,7 @@ export default function LyricView(props) {
     })
 
     function addBar(event) {
+        resetPopup();
         fetch(
             `/addbar?line=${highlighted}&correct_artist=${props.details.artist}&song=${props.details.title}`,
             { method: 'POST' }
@@ -35,8 +33,23 @@ export default function LyricView(props) {
         });
     }
 
-    function highlight() {
-        setHighlighted(window.getSelection().toString().trim());
+    function captureHighlight() {
+        var selection = window.getSelection().toString().trim();
+        if (selection.length !== 0) {
+            var rect = window.getSelection().getRangeAt(0).getBoundingClientRect();
+            setHighlighted(selection);
+            setPosition([rect.x - 75, rect.y - 5]);
+        } else {
+            setHighlighted('');
+            setPosition([]);
+        }
+    }
+
+    function resetPopup() {
+        setPosition([]);
+        if (window.getSelection) {
+            window.getSelection().removeAllRanges();
+        }
     }
 
     function identifyPrevBars(text, highlights) {
@@ -49,7 +62,7 @@ export default function LyricView(props) {
         regex = regex.substring(0, regex.lastIndexOf('|'));
         var parts = text.split(new RegExp(regex, 'gi'));
 
-        return <pre ref={ref}> {parts.map((part, i) => {
+        return <pre> {parts.map((part, i) => {
             var prev = false;
 
             highlights.map((highlight, i) => {
@@ -59,7 +72,7 @@ export default function LyricView(props) {
                 return null;
             });
             if (prev) {
-                return <p key={i}><span key={i} id='highlight'>{part}</span></p>
+                return <p key={i} className='noselect'><span key={i} id='highlight'>{part}</span></p>
             }
 
             if (String(part) !== 'undefined') {
@@ -73,28 +86,32 @@ export default function LyricView(props) {
         })} </pre>;
     }
 
-    var lyrics_display = (<pre ref={ref}>{lyrics}</pre>);
+    var lyrics_display = (<pre>{lyrics}</pre>);
     if (prevBars.length !== 0) {
         lyrics_display = identifyPrevBars(lyrics, prevBars);
     }
 
+    var popup_button = null;
+    if (position.length === 2) {
+        popup_button = (<button id='popup' style={{ left: `${position[0]}px`, top: `${position[1]}px`}} onClick={addBar}>Save Bar</button>);
+    }
+
     return (
-        <div>
+        <div onScroll={resetPopup} onScrollCapture={resetPopup}>
             <Navbar />
             {lyrics === "" ?
                 <LoadingIndicator />
                 :
-                <div id='LyricView'>
-                    <div id='SongInfo'>
+                <div id='LyricView' onMouseUp={captureHighlight}>
+                    <div id='SongInfo' className='noselect'>
                         <h1 id='title'>{props.details.title}</h1>
                         <h3 id='artist'>{props.details.artist}</h3>
                     </div>
                     {lyrics_display}
-                    <Popover selectionRef={ref} onTextSelect={highlight}>
-                        <button type="button" onClick={addBar}>Save Bar</button>
-                    </Popover>
                 </div>
             }
+
+            {popup_button}
         </div>
     )
 }

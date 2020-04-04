@@ -2,6 +2,7 @@
 
 ### Feature List
 ##### Incomplete
+* Style popover in LyricView.js
 * Prevent adding a bar longer than current database limit
 * Don't allow previously submitted bar to be added
 * Make LyricView.js styling adjustable for smaller displays
@@ -10,8 +11,8 @@
 * Remove IncorrectArtist fields from bar table in database (generate on-the-fly)
 * Add instructions popup for Game.js
 * Raining bars (have bars falling in the background)
-* Highlight bar just added after refresh (not currently working, LyricView.js)
 ##### Complete
+* Highlight bar just added after refresh (not currently working, LyricView.js)
 * Limit amount of time per each bar (Create a timer in Game.js)
 * Move ArtistButtons further to the corner
 * Style Game.js (create grid of ArtistButton.js components)
