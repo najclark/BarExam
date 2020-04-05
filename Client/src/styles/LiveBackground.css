@@ -1,0 +1,19 @@
+.falling-bar {
+    position: fixed;
+    text-align: center;
+    color: white;
+    z-index: -1;
+}
+
+pre {
+    text-align: center;
+}
+
+@keyframes fall {
+    from {
+        top: 0;
+    }
+    to {
+        top: 100%;
+    }
+}

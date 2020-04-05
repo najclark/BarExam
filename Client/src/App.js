@@ -4,6 +4,7 @@ import Start from './components/Start';
 import Game from './components/Game';
 import AddBar from './components/AddBar';
 import { IntentContext, StartIntent, GameIntent, AddBarIntent } from './components/IntentContext';
+import LiveBackground from './components/LiveBackground';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <IntentContext.Provider value={intent}>
             <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet"/>
             {renderedComponent}
+            <LiveBackground />
         </IntentContext.Provider>
     );
 }

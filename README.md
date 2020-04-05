@@ -2,16 +2,17 @@
 
 ### Feature List
 ##### Incomplete
+* Add clarifying comments (basically everywhere)
 * Style popover in LyricView.js
 * Prevent adding a bar longer than current database limit
-* Don't allow previously submitted bar to be added
 * Make LyricView.js styling adjustable for smaller displays
 * Add spinning vinyl to on hover for SongOption.js (https://codepen.io/marcruecker/pen/mBJVBX)
 * Read verse notes \[Chorus] to find true artist of bar
 * Remove IncorrectArtist fields from bar table in database (generate on-the-fly)
 * Add instructions popup for Game.js
-* Raining bars (have bars falling in the background)
 ##### Complete
+* Raining bars (have bars falling in the background)
+* Don't allow previously submitted bar to be added
 * Highlight bar just added after refresh (not currently working, LyricView.js)
 * Limit amount of time per each bar (Create a timer in Game.js)
 * Move ArtistButtons further to the corner
