@@ -47,7 +47,11 @@ html {
     /* font-family: sans-serif; */
     text-align: center;
     background-color: #292929;
-
+    /* background-image: url('studio.jpg'); */
+    /* background-position: center; */
+    /* background-size: cover;
+    background-repeat: no-repeat; */
+    /* filter: grayscale(100%); */
 }
 
 #loading-indicator {
@@ -56,4 +60,14 @@ html {
     top: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+}
+
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: brightness(50%);
+    z-index: -1;
 }

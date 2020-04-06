@@ -8,7 +8,7 @@ export default function LoadingIndicator(props) {
     return (
         <ul id='navbar'>
             <h1>"Bar Exam"</h1>
-            <li style={{ float: 'right' }}><button onClick={() => { intent(StartIntent); }}>Home</button></li>
+            <li style={{ float: 'right' }}><button onClick={() => { intent(StartIntent); }}>HOME</button></li>
         </ul>
     )
 }

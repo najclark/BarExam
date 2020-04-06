@@ -1,25 +1,25 @@
-#play {
-    margin: 0;
-    position: absolute;
+#score-page {
+    position: fixed;
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    color: white;
 }
 
-#play h1 {
+#score-page > h1 {
     font-size: 100px;
     color: white;
     margin: 0;
 }
 
-#play h3 {
-    font-size: 18px;
+#score-page > h3 {
+    font-size: 24px;
     color: white;
-    margin-top: 0;
+    margin: 0;
 }
 
-#play #start {
+#score-page > button {
     margin: 10px;
     font-family: 'Righteous', cursive;
     background-color: Transparent;
@@ -35,20 +35,4 @@
     padding: 16px;
     padding-left: 36px;
     padding-right: 36px;
-}
-
-#addbar-btn {
-    position: absolute;
-    top: 1%;
-    right: 1%;
-    font-family: 'Righteous', cursive;
-    background-color: Transparent;
-    background-repeat:no-repeat;
-    cursor:pointer;
-    overflow: hidden;
-    border-style: none;
-    border-color: Transparent;
-    outline-color: Transparent;
-    color: white;
-    font-size: 18px;
 }

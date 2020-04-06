@@ -1,7 +1,8 @@
 # Bar Exam
 
-### Feature List
+### Task List
 ##### Incomplete
+* Center "Bar Exam" in Navbar.js
 * Add clarifying comments (basically everywhere)
 * Style popover in LyricView.js
 * Prevent adding a bar longer than current database limit
@@ -11,6 +12,7 @@
 * Remove IncorrectArtist fields from bar table in database (generate on-the-fly)
 * Add instructions popup for Game.js
 ##### Complete
+* Account for all timeouts in Game.js (fatal error)
 * Raining bars (have bars falling in the background)
 * Don't allow previously submitted bar to be added
 * Highlight bar just added after refresh (not currently working, LyricView.js)

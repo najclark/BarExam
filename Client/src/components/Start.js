@@ -16,10 +16,11 @@ export default function Start() {
 
     return (
         <div>
-            <button id="addbar-btn" type="button" onClick={renderAddBar}>ADD BAR</button>
             <div id='play'>
                 <h1>"Bar Exam"</h1>
-                <button id='start' type="button" onClick={renderGame}>START</button>
+                <h3>Select who said the bar before time runs out.</h3>
+                <button id='start' onClick={renderGame}>PLAY</button>
+                <button id="start" onClick={renderAddBar}>ADD A BAR</button>
             </div>
         </div>
     )
