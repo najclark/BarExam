@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../styles/LyricView.css';
 import LoadingIndicator from './LoadingIndicator';
 import Navbar from './Navbar';
+import Highlighter from "react-highlight-words";
 
 export default function LyricView(props) {
 
@@ -24,8 +25,9 @@ export default function LyricView(props) {
 
     function addBar(event) {
         resetPopup();
+        // console.log(highlighted.split('\n').join('\\n'));
         fetch(
-            `/addbar?line=${highlighted}&correct_artist=${props.details.artist}&song=${props.details.title}`,
+            `/addbar?line=${highlighted.split('\n').join('%0A')}&correct_artist=${props.details.artist}&song=${props.details.title}`,
             { method: 'POST' }
         ).then(res => res.json()).then(data => {
             //reset lyrics to re-render lyrics_display with new bar
@@ -53,37 +55,21 @@ export default function LyricView(props) {
     }
 
     function identifyPrevBars(text, highlights) {
-        // Split on highlight terms and include term into parts, ignore case
-        var regex = ``;
+        var searchWords = [];
+        // console.log(text);
         highlights.map((highlight, i) => {
-            regex = regex.concat(`(${highlight.Line})|`);
+            // highlight.Line.split('\n').map((singleLine, i2) => {
+                searchWords.push(highlight.Line);
+                // return null;
+            // });
             return null;
         });
-        regex = regex.substring(0, regex.lastIndexOf('|'));
-        var parts = text.split(new RegExp(regex, 'gi'));
-
-        return <pre> {parts.map((part, i) => {
-            var prev = false;
-
-            highlights.map((highlight, i) => {
-                if (highlight.Line === part) {
-                    prev = true;
-                }
-                return null;
-            });
-            if (prev) {
-                return <p key={i} className='noselect'><span key={i} id='highlight'>{part}</span></p>
-            }
-
-            if (String(part) !== 'undefined') {
-                return (
-                    <p key={i}><span key={i} id='else'>
-                        {part.trim()}
-                    </span></p>
-                )
-            }
-            return null;
-        })} </pre>;
+        // console.log(searchWords);
+        return (<pre><Highlighter 
+            searchWords={searchWords} 
+            textToHighlight={text} 
+            highlightClassName='highlight' 
+            /></pre>)
     }
 
     var lyrics_display = (<pre>{lyrics}</pre>);

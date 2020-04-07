@@ -23,9 +23,6 @@ class Bar(db.Model):
     BarID = db.Column(db.Integer, primary_key=True)
     Line = db.Column(db.String(128), index=True, unique=True)
     CorrectArtist = db.Column(db.Integer, db.ForeignKey('artist.ArtistID'))
-    IncorrectArtist1 = db.Column(db.Integer, db.ForeignKey('artist.ArtistID'))
-    IncorrectArtist2 = db.Column(db.Integer, db.ForeignKey('artist.ArtistID'))
-    IncorrectArtist3 = db.Column(db.Integer, db.ForeignKey('artist.ArtistID'))
     SongID = db.Column(db.Integer, db.ForeignKey('song.SongID'))
 
     def __repr__(self):

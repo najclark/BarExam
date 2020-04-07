@@ -2,16 +2,20 @@
 
 ### Task List
 ##### Incomplete
+* Popup for adding a bar instructions (blur background)
+* Maybe a popup after guessing an artist
 * Center "Bar Exam" in Navbar.js
+* Add new line character to multi-line bars (LyricView.js)
+* Fix shotty highlighting of previously added bars (https://stackoverflow.com/questions/1144783/how-to-replace-all-occurrences-of-a-string)
 * Add clarifying comments (basically everywhere)
 * Style popover in LyricView.js
 * Prevent adding a bar longer than current database limit
 * Make LyricView.js styling adjustable for smaller displays
 * Add spinning vinyl to on hover for SongOption.js (https://codepen.io/marcruecker/pen/mBJVBX)
 * Read verse notes \[Chorus] to find true artist of bar
-* Remove IncorrectArtist fields from bar table in database (generate on-the-fly)
-* Add instructions popup for Game.js
 ##### Complete
+* Remove IncorrectArtist fields from bar table in database (generate on-the-fly)
+* Add instructions popup for Game.js (added to Start.js)
 * Account for all timeouts in Game.js (fatal error)
 * Raining bars (have bars falling in the background)
 * Don't allow previously submitted bar to be added

@@ -12,14 +12,17 @@ def getbars():
     bars = list(db.session.query(Bar).all())
     shuffle(bars)
     batch = []
-    # TODO: Integrate Genius API and include much more artist info in json
     i = 0
     while i < num and i < len(bars):
         options = []
-        options.append(Artist.query.get(bars[i].CorrectArtist).toJSON())
-        options.append(Artist.query.get(bars[i].IncorrectArtist1).toJSON())
-        options.append(Artist.query.get(bars[i].IncorrectArtist2).toJSON())
-        options.append(Artist.query.get(bars[i].IncorrectArtist3).toJSON())
+        correct_artist = Artist.query.get(bars[i].CorrectArtist)
+        # Get list of artists other than the correct_artist
+        wrong_artists = Artist.query.filter(Artist.Name != correct_artist.Name).all()
+        shuffle(wrong_artists)  # works inplace, returns None
+        options.append(correct_artist.toJSON())
+        options.append(wrong_artists[0].toJSON())
+        options.append(wrong_artists[1].toJSON())
+        options.append(wrong_artists[2].toJSON())
         shuffle(options)
 
         batch.append({'bar': bars[i].toJSON(), 'options': options})
@@ -107,11 +110,6 @@ def addbar():
         db.session.add(s)
         db.session.commit()  # may not be necessary to commit new song here
 
-    # Get list of artists other than the correct_artist
-    artists = Artist.query.filter(Artist.Name != correct_artist.Name).all()
-    shuffle(artists)  # works inplace, returns None
-
-    db.session.add(Bar(Line=line, CorrectArtist=correct_artist.ArtistID,
-                       IncorrectArtist1=artists[0].ArtistID, IncorrectArtist2=artists[1].ArtistID, IncorrectArtist3=artists[2].ArtistID, song=s))
+    db.session.add(Bar(Line=line, CorrectArtist=correct_artist.ArtistID, song=s))
     db.session.commit()
     return jsonify({'response': 'Success'})
