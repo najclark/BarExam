@@ -3,8 +3,14 @@ import ArtistButton from './ArtistButton'
 import LoadingIndicator from './LoadingIndicator'
 import '../styles/Game.css';
 import ScorePage from './ScorePage'
+import Filter from 'bad-words';
+import { useContext } from 'react';
+import { ExplicitContext } from './ExplicitContext';
 
 export default function Game() {
+
+    const explicit = useContext(ExplicitContext).explicit;
+    const filter = (explicit ? new Filter({ emptyList: true }) : new Filter());
 
     const batch_size = 20;
 
@@ -102,7 +108,7 @@ export default function Game() {
                     <ArtistButton artist={state.bars[0].options[3]} selectArtist={selectArtist} position='right' />
                 </div>
 
-                <h1 id="bar">"{state.bars[0].bar.Line}"</h1>
+                <h1 id="bar">"{filter.clean(state.bars[0].bar.Line)}"</h1>
             </div>
         )
     }

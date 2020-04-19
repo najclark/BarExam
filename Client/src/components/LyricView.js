@@ -12,6 +12,8 @@ export default function LyricView(props) {
     const [position, setPosition] = useState([]);
     const [highlighted, setHighlighted] = useState('');
 
+    const [instructions, setInstructions] = useState(true);
+
     useEffect(() => {
 
         if (lyrics === "") {
@@ -59,17 +61,17 @@ export default function LyricView(props) {
         // console.log(text);
         highlights.map((highlight, i) => {
             // highlight.Line.split('\n').map((singleLine, i2) => {
-                searchWords.push(highlight.Line);
-                // return null;
+            searchWords.push(highlight.Line);
+            // return null;
             // });
             return null;
         });
         // console.log(searchWords);
-        return (<pre><Highlighter 
-            searchWords={searchWords} 
-            textToHighlight={text} 
-            highlightClassName='highlight' 
-            /></pre>)
+        return (<pre><Highlighter
+            searchWords={searchWords}
+            textToHighlight={text}
+            highlightClassName='highlight'
+        /></pre>)
     }
 
     var lyrics_display = (<pre>{lyrics}</pre>);
@@ -79,26 +81,37 @@ export default function LyricView(props) {
 
     var popup_button = null;
     if (position.length === 2) {
-        popup_button = (<button id='popup' style={{ left: `${position[0]}px`, top: `${position[1]}px`}} onClick={addBar}>Save Bar</button>);
+        popup_button = (<button id='popup' style={{ left: `${position[0]}px`, top: `${position[1]}px` }} onClick={addBar}>Save Bar</button>);
     }
 
-    return (
-        <div onScroll={resetPopup} onScrollCapture={resetPopup}>
-            <Navbar />
-            {lyrics === "" ?
-                <LoadingIndicator />
-                :
-                <div id='LyricView' onMouseUp={captureHighlight}>
-                    <div id='SongInfo' className='noselect'>
-                        <h1 id='title'>{props.details.title}</h1>
-                        <h3 id='artist'>{props.details.artist}</h3>
-                    </div>
-                    {lyrics_display}
+    if (instructions) {
+        return (
+            <div id='popover'>
+                <div id='card'>
+                    <h1> Highlight a line in the song then click 'Save Bar' to add it to the game </h1>
+                    <button onClick={() => { setInstructions(false); }}>Got It!</button>
                 </div>
-            }
+            </div>
+        )
+    } else {
+        return (
+            <div onScroll={resetPopup} onScrollCapture={resetPopup}>
+                <Navbar pickSong={props.pickSong}/>
+                {lyrics === "" ?
+                    <LoadingIndicator />
+                    :
+                    <div id='LyricView' onMouseUp={captureHighlight}>
+                        <div id='SongInfo' className='noselect'>
+                            <h1 id='title'>{props.details.title}</h1>
+                            <h3 id='artist'>{props.details.artist}</h3>
+                        </div>
+                        {lyrics_display}
+                    </div>
+                }
 
-            {popup_button}
-        </div>
-    )
+                {popup_button}
+            </div>
+        )
+    }
 }
 

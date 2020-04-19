@@ -34,7 +34,7 @@ export default function AddBar() {
         )
     } else {
         return (
-            <LyricView details={selectedSong} />
+            <LyricView details={selectedSong} pickSong={pickSong}/>
         )
     }
     
