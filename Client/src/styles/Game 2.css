@@ -1,0 +1,85 @@
+#bar {
+    margin: 0;
+    position: absolute;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    font-size: 64px;
+    font-family: 'Righteous', cursive;
+    background-color: #bdc3c74b;
+    z-index: 3;
+}
+
+/* Split the screen in half */
+.split {
+    display: block;
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    padding-top: 20px;
+    overflow: hidden;
+}
+
+/* Control the left side */
+.left {
+    left: 0;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+}
+
+#needle {
+    position: absolute;
+    top: 40%;
+    left: 25%;
+    width: 300px;
+    height: 300px;
+    transform: translate(-50%, -50%);
+    transform: rotate(-100deg);
+    z-index: 2;
+}
+
+#vinyl {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#timer > svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 700px;
+    height: 700px;
+    transform: translate(-50%, -50%);
+}
+
+#timer > svg circle {
+    cx: 50%;
+    cy: 50%;
+    r: 288;
+    stroke-dasharray: 1900px;
+    stroke-dashoffset: 0px;
+    stroke-linecap: round;
+    stroke-width: 10px;
+    stroke: #2ecc71;
+    fill: none;
+    animation: countdown 10s linear;
+}
+
+@keyframes countdown {
+  from {
+    stroke-dashoffset: 0px;
+  }
+  to {
+    stroke-dashoffset: 1900px;
+  }
+}

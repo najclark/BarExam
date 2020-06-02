@@ -1,0 +1,22 @@
+#SongOption {
+    position: relative;
+    width: 18%;
+    margin: auto 0;
+}
+
+#SongOption:hover {
+    cursor: pointer;
+}
+
+#SongOption > #details {
+    position: absolute;
+    bottom: 0px;
+    padding-bottom: 10px;
+    width: 100%;
+    background-color: rgba(204, 204, 204, 0.9);
+}
+
+#SongOption > #img {
+    width: 100%;
+    margin: 0 auto;
+}
